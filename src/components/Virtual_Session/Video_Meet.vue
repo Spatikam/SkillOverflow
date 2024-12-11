@@ -1,15 +1,26 @@
+<script setup>
+    import Nav_Bar from './Nav_Bar.vue'
+</script>
+
+
 <template>
     <div class="meet-container">
+        <Nav_Bar @custom-leave-event="handleleaveEvent"></Nav_Bar>
+        <div>
         <iframe
              src="https://spatikam.whereby.com/spatikama712d3cf-2938-41ac-a34f-e970b94694b5"
              allow="camera; microphone; speaker; fullscreen; display-capture">
         </iframe>
+        </div>
+
         
     </div>
 </template>
 
 <style>
     .meet-container{
+        display: flex;
+        flex-direction: row;
         top: 0;
         left: 0;
         position: fixed;
@@ -17,10 +28,23 @@
         height: 100%;
     }
     iframe{
-        height: 100%;
+        margin-top: 5%;
+        height: 90%;
         width: 100%;
+        position: fixed;
     }
 </style>
+
+<script>
+    export default{
+        methods:{
+            handleleaveEvent(data){
+                this.$emit('custom-leave-event', data);
+                console.log(data)
+            }
+        }
+    }
+</script>
 
 
 <!--<script setup>

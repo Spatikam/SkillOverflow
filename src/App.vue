@@ -10,7 +10,7 @@ import Add_window from './components/Profile_Page/Add_window.vue'
   <Login_Window v-if="trig_login" @custom-login-event="handleLoginEvent"> </Login_Window>
   <Feed_Page v-if="trig_feed" @custom-video-event="handleVideoEvent" @custom-logout-event="handleLogoutEvent" @custom-profile-event="handleProfileEvent"></Feed_Page>
   <Profile v-if="trig_goback" @custom-goback-event="handleGoBackEvent" name="RIP" email="ripskillan312004@gmail.com"></Profile>
-  <Video_Meet v-if="trig_video"></Video_Meet>
+  <Video_Meet v-if="trig_video" @custom-leave-event="handleLeaveEvent"></Video_Meet>
 </template>
 
 <style scoped>
@@ -44,13 +44,18 @@ import Add_window from './components/Profile_Page/Add_window.vue'
         console.log(data)
       },
       handleGoBackEvent(data){
-        this.trig_goback = null;
         this.trig_feed = true;
+        this.trig_goback = null;
         console.log(data)
       },
       handleProfileEvent(data){
         this.trig_goback = true;
         this.trig_feed = null;
+        console.log(data);
+      },
+      handleLeaveEvent(data){
+        this.trig_feed = true;
+        this.trig_video = null;
         console.log(data);
       }
     }
